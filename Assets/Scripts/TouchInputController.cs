@@ -8,22 +8,20 @@ public class TouchInputController : MonoBehaviour
     [SerializeField] private float minScale = 0.5f;
     [SerializeField] private float maxScale = 2f;
 
-    private GameObject spawnedObject;
     private Vector2 touch1StartPos, touch2StartPos;
     private float initialDistance;
     private Vector3 initialScale;
 
     void Update()
     {
-        if (sceneManager.SpawnedObject == null) return;
-
-        spawnedObject = sceneManager.SpawnedObject;
-
         // Handle single touch for placement
         if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
             sceneManager.PlaceObject(Touchscreen.current.primaryTouch.position.ReadValue());
         }
+
+        // Only proceed with manipulation if we have a spawned object
+        if (sceneManager.SpawnedObject == null) return;
 
         // Handle two touches for scaling and rotation
         if (Touchscreen.current.touches.Count == 2)
@@ -37,7 +35,7 @@ public class TouchInputController : MonoBehaviour
                 touch1StartPos = touch1.position.ReadValue();
                 touch2StartPos = touch2.position.ReadValue();
                 initialDistance = Vector2.Distance(touch1StartPos, touch2StartPos);
-                initialScale = spawnedObject.transform.localScale;
+                initialScale = sceneManager.SpawnedObject.transform.localScale;
             }
 
             // Current touch positions
@@ -52,13 +50,13 @@ public class TouchInputController : MonoBehaviour
             newScale.x = Mathf.Clamp(newScale.x, minScale, maxScale);
             newScale.y = Mathf.Clamp(newScale.y, minScale, maxScale);
             newScale.z = Mathf.Clamp(newScale.z, minScale, maxScale);
-            spawnedObject.transform.localScale = newScale;
+            sceneManager.SpawnedObject.transform.localScale = newScale;
 
             // Calculate rotation
             Vector2 previousDirection = touch2StartPos - touch1StartPos;
             Vector2 currentDirection = touch2CurrentPos - touch1CurrentPos;
             float angle = Vector2.SignedAngle(previousDirection, currentDirection);
-            spawnedObject.transform.Rotate(Vector3.up, -angle * rotationSpeed * Time.deltaTime);
+            sceneManager.SpawnedObject.transform.Rotate(Vector3.up, -angle * rotationSpeed * Time.deltaTime);
         }
     }
 }

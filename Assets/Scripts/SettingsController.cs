@@ -32,4 +32,6 @@ public class SettingsController : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", soundOn ? Mathf.Log10(volume) * 20 : -80f);
         PlayerPrefs.SetInt("SoundEnabled", soundOn ? 1 : 0);
     }
+
+
 }

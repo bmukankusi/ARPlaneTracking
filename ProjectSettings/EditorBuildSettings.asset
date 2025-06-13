@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SplashScreenScene.unity
+    guid: cd9c094ce8c3a504a9b7a950736e8c9c
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: f9555c0ba8cc2b446aa4275516ec853b
+  - enabled: 1
+    path: Assets/Scenes/ARPlaneTrackingScene.unity
+    guid: 065d60e5ff7067248b85f47692e8e1b6
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: eada5b465156edd4bb72aa4c28f7bd92, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: e787a9004ba17d745a12ffa9ffa6958a, type: 2}

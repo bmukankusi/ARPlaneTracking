@@ -1,13 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorChanger : MonoBehaviour
 {
-    public Material objectMaterial; // Assign in inspector
-
-    public void ChangeColor(Color newColor)
+    [System.Serializable]
+    public class ColorButton
     {
-        objectMaterial.color = newColor;
+        public Button button;
+        public Color color;
+    }
+
+    [Header("References")]
+    [SerializeField] private ARSceneManager arSceneManager;
+    [SerializeField] private ColorButton[] colorButtons;
+
+    void Start()
+    {
+        foreach (var colorButton in colorButtons)
+        {
+            // Set button appearance
+            colorButton.button.GetComponent<Image>().color = colorButton.color;
+
+            // Add click listener
+            colorButton.button.onClick.AddListener(() =>
+            {
+                if (arSceneManager != null && arSceneManager.SpawnedObject != null)
+                {
+                    arSceneManager.ChangeObjectColor(colorButton.color);
+                }
+            });
+        }
     }
 }
