@@ -3,32 +3,28 @@ using UnityEngine.UI;
 
 public class ColorChanger : MonoBehaviour
 {
-    [System.Serializable]
-    public class ColorButton
+    [SerializeField] private GameObject targetObject;
+    [SerializeField] private Button[] colorButtons;
+    [SerializeField] private Color[] colors;
+
+    private void Start()
     {
-        public Button button;
-        public Color color;
+        for (int i = 0; i < colorButtons.Length; i++)
+        {
+            int index = i;
+            colorButtons[i].onClick.AddListener(() => ChangeColor(index));
+        }
     }
 
-    [Header("References")]
-    [SerializeField] private ARSceneManager arSceneManager;
-    [SerializeField] private ColorButton[] colorButtons;
-
-    void Start()
+    private void ChangeColor(int colorIndex)
     {
-        foreach (var colorButton in colorButtons)
+        if (targetObject != null)
         {
-            // Set button appearance
-            colorButton.button.GetComponent<Image>().color = colorButton.color;
-
-            // Add click listener
-            colorButton.button.onClick.AddListener(() =>
+            Renderer renderer = targetObject.GetComponent<Renderer>();
+            if (renderer != null)
             {
-                if (arSceneManager != null && arSceneManager.SpawnedObject != null)
-                {
-                    arSceneManager.ChangeObjectColor(colorButton.color);
-                }
-            });
+                renderer.material.color = colors[colorIndex];
+            }
         }
     }
 }
