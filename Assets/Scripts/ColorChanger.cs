@@ -16,7 +16,7 @@ public class ColorChanger : MonoBehaviour
         }
     }
 
-    private void ChangeColor(int colorIndex)
+    public void ChangeColor(int colorIndex)
     {
         if (targetObject != null)
         {
