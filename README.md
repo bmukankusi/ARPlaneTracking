@@ -4,6 +4,11 @@
 ## Demo  
 https://drive.google.com/file/d/1NF9pnaQJyoAYn_3CtZTdeEreVyfei_me/view?usp=sharing  
 
+## App UI pages
+- Splash screen of 3 seconds
+- Home page (About, Credits, and Settings buttons that leads to the pages)
+- AR Experience (Click on start button)
+
 ## Features  
 - **Horizontal plane detection** (tables, floors)  
 - **One-tap cube placement**  
