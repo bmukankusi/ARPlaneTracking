@@ -21,5 +21,5 @@ https://drive.google.com/file/d/1NF9pnaQJyoAYn_3CtZTdeEreVyfei_me/view?usp=shari
 
 2. **Installation**:  
    
-   -git clone the repository
-   -Open in Unity and deploy to your device
+   - git clone the repository
+   - Open in Unity and deploy to your device
